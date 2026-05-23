@@ -1,113 +1,168 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
-
 @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&family=Space+Grotesk:wght@500;600;700&family=JetBrains+Mono:wght@400;600&display=swap');
-
 :root {
-  color-scheme: dark;
+    color-scheme: dark;
+    --bg: #050505;
+    --card: #0f0f12;
+    --purple: #7c3aed;
+    --blue: #2563eb;
+    --cyan: #06b6d4;
+    --pink: #ec4899;
+    --orange: #f97316;
+    --green: #22c55e;
+    --yellow: #eab308;
+    --text: #ffffff;
+    --muted: rgba(255, 255, 255, 0.65);
 }
 
-* { box-sizing: border-box; }
-
-html, body {
-  background: #000;
-  color: #fff;
-  font-family: 'Inter', system-ui, sans-serif;
-  overflow-x: hidden;
-  -webkit-font-smoothing: antialiased;
+* {
+    box-sizing: border-box;
 }
 
-::-webkit-scrollbar { width: 6px; height: 6px; }
-::-webkit-scrollbar-track { background: #000; }
-::-webkit-scrollbar-thumb { background: rgba(255,255,255,0.2); border-radius: 3px; }
-::-webkit-scrollbar-thumb:hover { background: rgba(255,255,255,0.4); }
+html,
+body {
+    background: var(--bg);
+    color: var(--text);
+    font-family: 'Inter', system-ui, sans-serif;
+    overflow-x: hidden;
+    -webkit-font-smoothing: antialiased;
+}
+
+body {
+    background-image: radial-gradient(circle at top left, rgba(124, 58, 237, 0.15), transparent 30%), radial-gradient(circle at top right, rgba(37, 99, 235, 0.15), transparent 30%), radial-gradient(circle at bottom left, rgba(236, 72, 153, 0.12), transparent 30%), radial-gradient(circle at bottom right, rgba(34, 197, 94, 0.12), transparent 30%);
+}
+
+::-webkit-scrollbar {
+    width: 6px;
+    height: 6px;
+}
+
+::-webkit-scrollbar-track {
+    background: #000;
+}
+
+::-webkit-scrollbar-thumb {
+    background: linear-gradient(to bottom, #7c3aed, #06b6d4);
+    border-radius: 999px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+    background: linear-gradient(to bottom, #ec4899, #2563eb);
+}
 
 @layer components {
-  /* Pure mono glass — no color tint */
-  .glass {
-    background: rgba(255, 255, 255, 0.04);
-    backdrop-filter: blur(20px);
-    -webkit-backdrop-filter: blur(20px);
-    border: 1px solid rgba(255, 255, 255, 0.12);
-    border-radius: 16px;
-  }
-
-  /* All buttons monochrome */
-  .btn {
-    @apply inline-flex items-center gap-2 px-7 py-3.5 rounded-xl font-semibold text-sm cursor-pointer transition-all duration-200 select-none;
-  }
-  .btn-primary {
-    background: #fff;
-    color: #000;
-    box-shadow: 0 0 0 1px rgba(255,255,255,0.1), 0 10px 40px rgba(255,255,255,0.15);
-  }
-  .btn-primary:hover {
-    transform: translateY(-2px);
-    box-shadow: 0 0 0 1px rgba(255,255,255,0.3), 0 15px 50px rgba(255,255,255,0.25);
-  }
-  .btn-ghost {
-    background: rgba(255, 255, 255, 0.05);
-    color: #fff;
-    border: 1px solid rgba(255, 255, 255, 0.15);
-  }
-  .btn-ghost:hover {
-    background: rgba(255, 255, 255, 0.12);
-    border-color: rgba(255, 255, 255, 0.3);
-  }
-
-  .nav-btn {
-    @apply inline-flex items-center gap-1.5 px-3.5 py-2 rounded-lg text-xs cursor-pointer transition-all duration-200 border;
-    background: rgba(255, 255, 255, 0.05);
-    border-color: rgba(255, 255, 255, 0.12);
-    color: rgba(255, 255, 255, 0.85);
-  }
-  .nav-btn:hover {
-    background: rgba(255, 255, 255, 0.12);
-    border-color: rgba(255, 255, 255, 0.3);
-    color: #fff;
-  }
-
-  .stat-pill {
-    @apply inline-flex items-center gap-1 px-2.5 py-1 rounded-full text-xs font-medium;
-    background: rgba(255, 255, 255, 0.08);
-    border: 1px solid rgba(255, 255, 255, 0.1);
-    color: rgba(255, 255, 255, 0.9);
-  }
-
-  .mono-text {
-    background: linear-gradient(135deg, #fff 0%, #fff 30%, #888 60%, #fff 100%);
-    background-size: 200% auto;
-    -webkit-background-clip: text;
-    background-clip: text;
-    color: transparent;
-    animation: shimmer 6s linear infinite;
-  }
+    .glass {
+        background: rgba(255, 255, 255, 0.05);
+        backdrop-filter: blur(20px);
+        -webkit-backdrop-filter: blur(20px);
+        border: 1px solid rgba(255, 255, 255, 0.08);
+        border-radius: 22px;
+        box-shadow: 0 0 0 1px rgba(255, 255, 255, 0.03), 0 20px 60px rgba(0, 0, 0, 0.45);
+    }
+    .btn {
+        @apply inline-flex items-center gap-2 px-7 py-3 rounded-2xl font-semibold text-sm cursor-pointer transition-all duration-300 select-none;
+    }
+    .btn-primary {
+        background: linear-gradient( 135deg, var(--purple), var(--blue), var(--cyan));
+        color: white;
+        box-shadow: 0 10px 40px rgba(124, 58, 237, 0.4), 0 0 30px rgba(37, 99, 235, 0.35);
+    }
+    .btn-primary:hover {
+        transform: translateY(-3px) scale(1.02);
+        box-shadow: 0 15px 50px rgba(124, 58, 237, 0.6), 0 0 50px rgba(37, 99, 235, 0.45);
+    }
+    .btn-ghost {
+        background: rgba(255, 255, 255, 0.06);
+        color: white;
+        border: 1px solid rgba(255, 255, 255, 0.1);
+    }
+    .btn-ghost:hover {
+        background: rgba(255, 255, 255, 0.12);
+        border-color: rgba(255, 255, 255, 0.25);
+        transform: translateY(-2px);
+    }
+    .nav-btn {
+        @apply inline-flex items-center gap-1.5 px-4 py-2 rounded-xl text-xs cursor-pointer transition-all duration-300 border;
+        background: rgba(255, 255, 255, 0.06);
+        border-color: rgba(255, 255, 255, 0.08);
+        color: white;
+    }
+    .nav-btn:hover {
+        background: linear-gradient( 135deg, rgba(124, 58, 237, 0.25), rgba(37, 99, 235, 0.25));
+        border-color: rgba(255, 255, 255, 0.2);
+        box-shadow: 0 0 20px rgba(124, 58, 237, 0.3);
+        transform: translateY(-2px);
+    }
+    .stat-pill {
+        @apply inline-flex items-center gap-1 px-3 py-1 rounded-full text-xs font-medium;
+        background: rgba(255, 255, 255, 0.06);
+        border: 1px solid rgba(255, 255, 255, 0.08);
+        color: white;
+    }
+    .gradient-text {
+        background: linear-gradient( 90deg, #ffffff, #7c3aed, #06b6d4, #ec4899, #ffffff);
+        background-size: 300% auto;
+        -webkit-background-clip: text;
+        background-clip: text;
+        color: transparent;
+        animation: shine 8s linear infinite;
+    }
+    .game-card {
+        position: relative;
+        overflow: hidden;
+        background: rgba(255, 255, 255, 0.03);
+        border: 1px solid rgba(255, 255, 255, 0.08);
+        border-radius: 24px;
+        transition: all 0.35s ease;
+    }
+    .game-card:hover {
+        transform: translateY(-6px) scale(1.02);
+        border-color: rgba(124, 58, 237, 0.5);
+        box-shadow: 0 0 30px rgba(124, 58, 237, 0.25), 0 0 60px rgba(37, 99, 235, 0.15);
+    }
+    .game-card::before {
+        content: "";
+        position: absolute;
+        inset: -1px;
+        background: linear-gradient( 135deg, rgba(124, 58, 237, 0.3), rgba(37, 99, 235, 0.3), rgba(236, 72, 153, 0.3));
+        opacity: 0;
+        transition: opacity 0.3s ease;
+        z-index: 0;
+    }
+    .game-card:hover::before {
+        opacity: 1;
+    }
+    .game-card-content {
+        position: relative;
+        z-index: 1;
+    }
 }
 
-/* Subtle B&W grid background */
-.bg-grid-mono {
-  background-image:
-    linear-gradient(rgba(255,255,255,0.04) 1px, transparent 1px),
-    linear-gradient(90deg, rgba(255,255,255,0.04) 1px, transparent 1px);
-  background-size: 40px 40px;
-  mask-image: radial-gradient(ellipse at center, black 0%, transparent 75%);
-  -webkit-mask-image: radial-gradient(ellipse at center, black 0%, transparent 75%);
+.bg-grid {
+    background-image: linear-gradient(rgba(255, 255, 255, 0.03) 1px, transparent 1px), linear-gradient(90deg, rgba(255, 255, 255, 0.03) 1px, transparent 1px);
+    background-size: 40px 40px;
 }
 
-/* CRT-style scanline overlay for that monochrome feel */
 .bg-scanlines {
-  background: repeating-linear-gradient(
-    0deg,
-    rgba(255, 255, 255, 0.02) 0px,
-    rgba(255, 255, 255, 0.02) 1px,
-    transparent 1px,
-    transparent 3px
-  );
+    background: repeating-linear-gradient( 0deg, rgba(255, 255, 255, 0.02) 0px, rgba(255, 255, 255, 0.02) 1px, transparent 1px, transparent 3px);
 }
 
-.no-select { user-select: none; -webkit-user-select: none; }
+.no-select {
+    user-select: none;
+    -webkit-user-select: none;
+}
+
+@keyframes shine {
+    to {
+        background-position: 300% center;
+    }
+}
 
 @keyframes confetti-fall {
-  to { transform: translateY(500px) rotate(720deg); opacity: 0; }
+    to {
+        transform: translateY(500px) rotate(720deg);
+        opacity: 0;
+    }
 }

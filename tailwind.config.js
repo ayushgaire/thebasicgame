@@ -1,41 +1,26 @@
 /** @type {import('tailwindcss').Config} */
 module.exports = {
-  content: [
-    './app/**/*.{js,ts,jsx,tsx}',
-    './components/**/*.{js,ts,jsx,tsx}',
-  ],
-  theme: {
-    extend: {
-      fontFamily: {
-        sans: ['Inter', 'system-ui', 'sans-serif'],
-        display: ['"Space Grotesk"', 'Inter', 'sans-serif'],
-        mono: ['"JetBrains Mono"', 'monospace'],
-      },
-      animation: {
-        'float-slow': 'float 12s ease-in-out infinite',
-        'rise': 'rise 0.6s cubic-bezier(0.16, 1, 0.3, 1) both',
-        'shimmer': 'shimmer 3s linear infinite',
-        'scan': 'scan 4s linear infinite',
-      },
-      keyframes: {
-        float: {
-          '0%, 100%': { transform: 'translate(0,0) rotate(0deg)' },
-          '50%':       { transform: 'translate(10px,-15px) rotate(5deg)' },
+    content: [
+        './app/**/*.{js,ts,jsx,tsx}',
+        './components/**/*.{js,ts,jsx,tsx}',
+    ],
+
+    theme: {
+        extend: {
+            colors: {
+                purpleGlow: '#7c3aed',
+                blueGlow: '#2563eb',
+                cyanGlow: '#06b6d4',
+                pinkGlow: '#ec4899',
+                orangeGlow: '#f97316',
+                greenGlow: '#22c55e',
+            },
+
+            boxShadow: {
+                neon: '0 0 20px rgba(124,58,237,0.45), 0 0 50px rgba(37,99,235,0.25)',
+            },
         },
-        rise: {
-          from: { opacity: '0', transform: 'translateY(20px)' },
-          to:   { opacity: '1', transform: 'translateY(0)' },
-        },
-        shimmer: {
-          '0%':   { backgroundPosition: '-200% 0' },
-          '100%': { backgroundPosition: '200% 0' },
-        },
-        scan: {
-          '0%':   { transform: 'translateY(-100%)' },
-          '100%': { transform: 'translateY(100vh)' },
-        },
-      },
     },
-  },
-  plugins: [],
+
+    plugins: [],
 };

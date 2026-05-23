@@ -4,6 +4,7 @@ import { motion } from 'framer-motion';
 import { useRouter } from 'next/navigation';
 import dynamic from 'next/dynamic';
 import { useEffect, useState } from 'react';
+
 import { Background } from '@/components/ui/Background';
 import { Footer } from '@/components/ui/Footer';
 import { PoweredByBar } from '@/components/ui/PoweredByBar';
@@ -15,16 +16,18 @@ const CodyzaIntro = dynamic(
 
 export default function LandingPage() {
   const router = useRouter();
+
   const [showIntro, setShowIntro] = useState(false);
   const [introChecked, setIntroChecked] = useState(false);
 
   useEffect(() => {
-    // Show intro once per session
     const seen = sessionStorage.getItem('tbg-intro-seen');
+
     if (!seen) {
       setShowIntro(true);
       sessionStorage.setItem('tbg-intro-seen', '1');
     }
+
     setIntroChecked(true);
   }, []);
 
@@ -32,87 +35,122 @@ export default function LandingPage() {
 
   return (
     <>
-      {showIntro && <CodyzaIntro onFinish={() => setShowIntro(false)} />}
+      {showIntro && (
+        <CodyzaIntro onFinish={() => setShowIntro(false)} />
+      )}
 
       <main className="relative min-h-screen overflow-x-hidden pt-12">
+
         <Background />
         <PoweredByBar />
 
         <div className="relative z-10 flex min-h-[calc(100vh-60px)] flex-col items-center justify-center px-6 text-center">
+
           <motion.div
-            initial={{ opacity: 0, y: 12 }}
+            initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.6, delay: showIntro ? 0 : 0.1 }}
-            className="flex flex-col items-center"
+            transition={{ duration: 0.8 }}
+            className="mx-auto w-full max-w-7xl px-4"
           >
-            <span className="mb-5 font-mono text-[10px] tracking-[0.5em] text-white/40 sm:text-[11px]">
-              ▣ &nbsp; MONOCHROME GAMING HUB &nbsp; ▣
-            </span>
+
+            <div className="mb-6 inline-flex items-center gap-2 rounded-full border border-white/10 bg-white/5 px-5 py-2 text-xs font-semibold tracking-[0.25em] text-white/70 backdrop-blur-xl">
+              🎮 POWERED BY CODYZA
+            </div>
 
             <motion.h1
-              initial={{ opacity: 0, scale: 0.95 }}
+              initial={{ opacity: 0, scale: 0.92 }}
               animate={{ opacity: 1, scale: 1 }}
-              transition={{ duration: 0.8, delay: 0.2 }}
-              className="font-display font-black leading-[0.95] tracking-tight text-white"
+              transition={{ duration: 0.9 }}
+              className="gradient-text break-words font-black leading-[0.9]"
               style={{
-                fontSize: 'clamp(48px, 9vw, 120px)',
-                textShadow: '0 0 60px rgba(255,255,255,0.15), 0 4px 8px rgba(0,0,0,0.5)',
+                fontSize: 'clamp(42px, 9vw, 130px)',
+                textShadow:
+                  '0 0 40px rgba(124,58,237,0.35), 0 0 80px rgba(37,99,235,0.25)',
               }}
             >
-              THEBASICGAME<br />.COM
+              THEBASICGAME
             </motion.h1>
+
+            <motion.h2
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              transition={{ delay: 0.25 }}
+              className="mt-2 text-2xl font-black text-white sm:text-5xl"
+            >
+              .COM
+            </motion.h2>
 
             <motion.p
               initial={{ opacity: 0 }}
               animate={{ opacity: 1 }}
-              transition={{ duration: 0.6, delay: 0.5 }}
-              className="mt-6 max-w-xl text-base leading-relaxed text-white/60 sm:text-lg"
+              transition={{ delay: 0.45 }}
+              className="mx-auto mt-8 max-w-2xl text-lg leading-relaxed text-white/70 sm:text-xl"
             >
-              A futuristic mini gaming console in your browser. Ten games. Zero setup. Pure flow.
+              A futuristic gaming universe with colorful neon visuals,
+              smooth gameplay, modern UI, and classic games reimagined.
             </motion.p>
 
             <motion.div
-              initial={{ opacity: 0 }}
-              animate={{ opacity: 1 }}
-              transition={{ duration: 0.6, delay: 0.65 }}
-              className="mt-3 font-mono text-[11px] tracking-[0.25em] text-white/40"
-            >
-              FOUNDER ·{' '}
-              <a
-                href="https://ayushgaire.com"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="font-bold text-white/70 transition-colors hover:text-white"
-              >
-                AYUSH GAIRE
-              </a>
-            </motion.div>
-
-            <motion.div
-              initial={{ opacity: 0, y: 10 }}
+              initial={{ opacity: 0, y: 12 }}
               animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.6, delay: 0.8 }}
-              className="mt-10"
+              transition={{ delay: 0.7 }}
+              className="mt-10 flex flex-wrap items-center justify-center gap-5"
             >
+
               <button
                 onClick={() => router.push('/dashboard')}
                 className="btn btn-primary text-base"
-                style={{ padding: '16px 36px' }}
               >
-                ▶ &nbsp; PLAY AS GUEST
+                ▶ PLAY AS GUEST
               </button>
+
+              <a
+                href="https://codyza.com"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="btn btn-ghost"
+              >
+                ⚡ CODYZA.COM
+              </a>
+
             </motion.div>
 
             <motion.div
               initial={{ opacity: 0 }}
               animate={{ opacity: 1 }}
-              transition={{ duration: 0.6, delay: 1 }}
-              className="mt-10 grid w-full max-w-md grid-cols-3 gap-3"
+              transition={{ delay: 0.95 }}
+              className="mt-14 grid grid-cols-1 gap-5 sm:grid-cols-3"
             >
-              <StatCard num="10" label="GAMES" />
-              <StatCard num="∞" label="PLAYTIME" />
-              <StatCard num="0" label="DOWNLOADS" />
+
+              <StatCard
+                title="10+"
+                label="CLASSIC GAMES"
+                glow="from-purple-500 to-cyan-500"
+              />
+
+              <StatCard
+                title="∞"
+                label="UNLIMITED FUN"
+                glow="from-pink-500 to-orange-500"
+              />
+
+              <StatCard
+                title="24/7"
+                label="PLAY ANYTIME"
+                glow="from-green-500 to-cyan-500"
+              />
+
             </motion.div>
+
+            <motion.div
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              transition={{ delay: 1.1 }}
+              className="mt-12 text-sm tracking-[0.3em] text-white/40"
+            >
+              FOUNDED BY AYUSH GAIRE
+            </motion.div>
+
           </motion.div>
         </div>
 
@@ -122,11 +160,33 @@ export default function LandingPage() {
   );
 }
 
-function StatCard({ num, label }: { num: string; label: string }) {
+function StatCard({
+  title,
+  label,
+  glow,
+}: {
+  title: string;
+  label: string;
+  glow: string;
+}) {
   return (
-    <div className="glass px-4 py-4 text-center">
-      <div className="font-display text-2xl font-black text-white">{num}</div>
-      <div className="mt-1 font-mono text-[9px] tracking-widest text-white/40">{label}</div>
+    <div className="glass relative overflow-hidden rounded-3xl p-8">
+
+      <div
+        className={`absolute inset-0 bg-gradient-to-br opacity-10 ${glow}`}
+      />
+
+      <div className="relative z-10">
+
+        <div className="text-5xl font-black text-white">
+          {title}
+        </div>
+
+        <div className="mt-2 text-sm tracking-[0.25em] text-white/60">
+          {label}
+        </div>
+
+      </div>
     </div>
   );
 }
